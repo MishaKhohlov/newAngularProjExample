@@ -1,0 +1,53 @@
+{
+  "name": "Knubisoft",
+  "version": "1.0.0",
+  "description": "Knubisoft project ",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "gulp",
+    "compass": "gem install compass"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://bitbucket.org/MeRush/knubisoft"
+  },
+  "author": "Knubisoft",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://bitbucket.org/MeRush/knubisofts"
+  },
+  "homepage": "https://bitbucket.org/MeRush/knubisoft#readme",
+  "devDependencies": {
+    "babel-core": "^6.17.0",
+    "babel-loader": "latest",
+    "babel-polyfill": "^6.13.0",
+    "babel-preset-es2015": "latest",
+    "browser-sync": "^2.17.3",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-compass": "^2.1.0",
+    "gulp-concat": "latest",
+    "gulp-csso": "latest",
+    "gulp-group-css-media-queries": "^1.1.0",
+    "gulp-htmlmin": "^3.0.0",
+    "gulp-ignore-errors": "0.0.4",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-uglify": "^2.0.0",
+    "gulp-util": "^3.0.7",
+    "raw-loader": "^0.5.1",
+    "vinyl-named": "latest",
+    "webpack-stream": "latest"
+  },
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-animate": "^1.5.8",
+    "angular-slick-carousel": "^3.1.7",
+    "angular-translate": "^2.12.1",
+    "angular-ui-router": "^0.3.1",
+    "compass": "^0.1.1",
+    "jquery": "^3.1.0",
+    "ruby": "^0.6.1",
+    "slick-carousel": "^1.6.0"
+  }
+}

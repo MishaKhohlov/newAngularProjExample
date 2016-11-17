@@ -1,0 +1,53 @@
+<div class="darkTitle">
+  <p class="darkTitle__dscr">Real power</p>
+  <h2 class="darkTitle__title">In small things</h2>
+</div>
+<section class="sevisesListBox">
+  <ul class="sevisesListBox__sevisesList sevisesList wrapCentering wrapCentering-md">
+    <li class="sevisesList__sevisesItem sevisesItem sevisesItem-web">
+      <h3 class="sevisesItem__title">Web Development</h3>
+      <p class="sevisesItem__dscr">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ornare ligula et
+        mauris tincidunt, dictum consequat diam congue. Sed tempor nisl diam, faucibus feugiat dui malesuada eu.
+        Pellentesque a metus in elit euismod molestie eget vel urna. Nullam eget metus et velit scelerisque sagittis ut
+        vitae enim. Nullam at lacinia metus. Cras blandit, lacus sed viverra posuere, neque neque egestas ligula, at
+        vehicula risus justo at dolor. Donec feugiat odio ac molestie dignissim. Duis ut aliquet diam. Curabitur vitae
+        enim id tortor ultrices efficitur. In</p>
+    </li>
+    <li class="sevisesList__sevisesItem sevisesItem sevisesItem-mobile">
+      <h3 class="sevisesItem__title">Mobile Development</h3>
+      <p class="sevisesItem__dscr">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ornare ligula et
+        mauris tincidunt, dictum consequat diam congue. Sed tempor nisl diam, faucibus feugiat dui malesuada eu.
+        Pellentesque a metus in elit euismod molestie eget vel urna. Nullam eget metus et velit scelerisque sagittis ut
+        vitae enim. Nullam at lacinia metus. Cras blandit, lacus sed viverra posuere, neque neque egestas ligula, at
+        vehicula risus justo at dolor. Donec feugiat odio ac molestie dignissim. Duis ut aliquet diam. Curabitur vitae
+        enim id tortor ultrices efficitur. In</p>
+    </li>
+    <li class="sevisesList__sevisesItem sevisesItem sevisesItem-embeded">
+      <h3 class="sevisesItem__title">Embeded Code</h3>
+      <p class="sevisesItem__dscr">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ornare ligula et
+        mauris tincidunt, dictum consequat diam congue. Sed tempor nisl diam, faucibus feugiat dui malesuada eu.
+        Pellentesque a metus in elit euismod molestie eget vel urna. Nullam eget metus et velit scelerisque sagittis ut
+        vitae enim. Nullam at lacinia metus. Cras blandit, lacus sed viverra posuere, neque neque egestas ligula, at
+        vehicula risus justo at dolor. Donec feugiat odio ac molestie dignissim. Duis ut aliquet diam. Curabitur vitae
+        enim id tortor ultrices efficitur. In</p>
+    </li>
+  </ul>
+</section>
+<div class="contactLinkBox">
+  <div class="contactLinkBox__contentContactLink contentContactLink">
+    <span class="contentContactLink__title">Need more information?</span>
+    <a href="#" class="contentContactLink__link itemLinkAll itemLinkAll-light" ng-click="$event.preventDefault(); srvc.$rootScope.request ? srvc.$rootScope.request = false : srvc.$rootScope.request = true">Contact Us</a>
+  </div>
+</div>
+<section class="tecUsedListBox">
+  <div class="tecUsedListBox__headPageDscr headPageDscr wrapCentering wrapCentering-lg-m">
+    <p class="headPageDscr__dscr">Knubisoft focuses on delivering B2C and B2B solutions of various complexities,
+      leveraging the latest in such technology stacks</p>
+  </div>
+  <!--<img src="assets/images/tec-used-cup.jpg" alt="">-->
+  <div class="tecUsedListBox__tecUsedList tecUsedList wrapCentering wrapCentering-lg">
+    <img ng-repeat="item in srvc.tech"
+         class="tecUsedList__img" ng-src="./assets/images/tecIcons/{{item}}.png">
+  </div>
+
+</section>

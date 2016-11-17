@@ -1,0 +1,31 @@
+<div class="darkTitle">
+  <p class="darkTitle__dscr">We are looking for people who make perfect harmony</p>
+  <h2 class="darkTitle__title">Together</h2>
+</div>
+<section class="careersBlock">
+  <ul class="careersBlock__careersList careersList wrapCentering wrapCentering-lg">
+    <li class="careersList__careerItem careerItem" ng-repeat="(key, vacancy) in careers.dataVacancies">
+      <div class="careerItem__careerItemHead careerItemHead careerItemHead-artDirector">
+        <p class="careerItemHead__title">{{vacancy.position.slice(0,35)}}</p>
+      </div>
+      <ul class="careerItem__careerDscrList careerDscrList">
+        <li class="careerDscrList__item"
+            ng-repeat="(key, item) in vacancy.skills.slice(0,4) track by $index">
+          {{item.slice(0,50)}}</li>
+      </ul>
+      <div class="careerItem__careerLinks careerLinks">
+        <a ng-href="#/call_back_form/{{key}}" class="careerLinks__link applyLink">
+          Apply
+          <span ng-repeat="i in [1,2,3,4]" class="applyLink__line-{{i}}"></span>
+        </a>
+        <a ng-href="#/careers/vacancy_description/{{key}}" class="careerLinks__link readLink">Read More</a>
+      </div>
+    </li>
+  </ul>
+  <div class="careersBlock__careerFooter careerFooter">
+    <div class="careerFooter__contentBox contentBox">
+      <p class="careerFooter__title">Join our creative team</p>
+      <p class="careerFooter__dscr">More than 50 world companies</p>
+    </div>
+  </div>
+</section>

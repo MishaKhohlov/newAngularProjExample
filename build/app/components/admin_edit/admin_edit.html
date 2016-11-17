@@ -1,0 +1,209 @@
+<link rel="stylesheet" href="style/common_admin.css">
+
+
+<div class="dashboardBox">
+  <button class="dashboardBox__logoutBtn btn btn-default" ng-click="edit.logout()">Logout</button>
+  <aside class="dashboardBox__dashboardAside dashboardAside">
+    <a class="dashboardAside__link btn btn-link"
+       href="#/admin/edit/{{item}}/create"
+       ng-repeat="item in edit.section.slice(0, 3)">
+      <span class="dashboardAside__icon glyphicon glyphicon-plus"></span>
+      Create {{item}}
+    </a>
+    <a href="" class="dashboardAside__link btn btn-link"
+       ng-click="edit.currentSection = 'categories'; edit.createCategoryWind = true;">
+      <span class="dashboardAside__icon glyphicon glyphicon-plus"></span>
+      Create category
+    </a>
+    <!--<a class="dashboardAside__link dashboardAside__link-manage btn btn-link" href="#">Manage categories</a>-->
+  </aside>
+
+  <div class="dashboardBox__dashboardMain dashboardMain">
+    <h1 class="dashboardMain__title adminPageTitle">Dashboard</h1>
+    <div class="dashboardMain__choosePost choosePost">
+      <button class="choosePost__btn btn btn-primary"
+              ng-repeat="item in edit.section.slice(0, 4)"
+              ng-class="edit.currentSection === item ? 'btn-info' : ''"
+              ng-click="edit.currentSection = item">{{item}}
+      </button>
+      <button class="choosePost__btn btn"
+              ng-repeat="item in edit.section.slice(4)"
+              ng-class="edit[item].length > 0 ? 'btn-warning' : 'btn-default';"
+              ng-disabled="!edit[item].length > 0"
+              ng-click="edit.currentSection = item">{{item}} ({{edit[item].length}})
+      </button>
+    </div>
+
+    <section ng-switch on="edit.currentSection" class="dashboardMain__postOptions postOptions">
+      <div ng-switch-when='vacancies'>
+        <h1>
+          <small>Vacancies</small>
+        </h1>
+        <ul class="postOptions__itemsHead itemsHead">
+          <li class="itemsHead__item itemsHead__item-index">#</li>
+          <li class="itemsHead__item itemsHead__item-name">Name</li>
+          <li class="itemsHead__item itemsHead__item-event">Publish</li>
+          <li class="itemsHead__item itemsHead__item-event">Delete</li>
+        </ul>
+        <div class="postOptions__postOptItem postOptItem" ng-repeat="(key, item) in edit.vacancies">
+          <div class="postOptItem__itemCell postOptItem__itemCell-index">{{$index + 1}}</div>
+          <a class="postOptItem__itemCell postOptItem__itemCell-name"
+             href="#/admin/edit/vacancies/{{key}}">{{item.position}}</a>
+          <div class="postOptItem__itemCell postOptItem__itemCell-event glyphicon"
+               ng-class="item.public ? 'glyphicon-check forest' : 'glyphicon-edit dark'"
+               ng-click="edit.confirmPublick('vacancies', key)">
+          </div>
+          <button class="postOptItem__itemCell postOptItem__itemCell-event glyphicon glyphicon-trash"
+                  ng-click="edit.deletePost('vacancies', key)"></button>
+        </div>
+      </div>
+
+      <div ng-switch-when='blogs'>
+        <h1>
+          <small>Blogs</small>
+        </h1>
+        <ul class="postOptions__itemsHead itemsHead itemsHead-mass">
+          <li class="itemsHead__item itemsHead__item-index">#</li>
+          <li class="itemsHead__item itemsHead__item-name">Name</li>
+          <li class="itemsHead__item itemsHead__item-category">Category</li>
+          <li class="itemsHead__item itemsHead__item-event">Publish</li>
+          <li class="itemsHead__item itemsHead__item-event">Delete</li>
+        </ul>
+        <div class="postOptions__postOptItem postOptItem postOptItem-mass" ng-repeat="(key, item) in edit.blogs">
+          <div class="postOptItem__itemCell postOptItem__itemCell-index">{{$index + 1}}</div>
+          <a class="postOptItem__itemCell postOptItem__itemCell-name"
+             href="#/admin/edit/blogs/{{key}}">{{item.title}}</a>
+          <div class="postOptItem__itemCell postOptItem__itemCell-category">{{item.category.value}}</div>
+          <div class="postOptItem__itemCell postOptItem__itemCell-event glyphicon"
+               ng-class="item.public ? 'glyphicon-check forest' : ' glyphicon-edit dark'"
+               ng-click="edit.confirmPublick('blogs', key)">
+          </div>
+          <button ng-click="edit.deletePost('blogs', item.id)"
+                  class="postOptItem__itemCell postOptItem__itemCell-event glyphicon glyphicon-trash"></button>
+        </div>
+      </div>
+
+      <div ng-switch-when='projects'>
+        <h1>
+          <small>Projects</small>
+        </h1>
+        <ul class="postOptions__itemsHead itemsHead itemsHead-mass">
+          <li class="itemsHead__item itemsHead__item-index">#</li>
+          <li class="itemsHead__item itemsHead__item-name">Name</li>
+          <li class="itemsHead__item itemsHead__item-category">Subtitle</li>
+          <li class="itemsHead__item itemsHead__item-event">Publish</li>
+          <li class="itemsHead__item itemsHead__item-event">Delete</li>
+        </ul>
+        <div class="postOptions__postOptItem postOptItem postOptItem-mass" ng-repeat="(key, item) in edit.projects">
+          <div class="postOptItem__itemCell postOptItem__itemCell-index">{{$index + 1}}</div>
+          <a class="postOptItem__itemCell postOptItem__itemCell-name"
+             href="#/admin/edit/projects/{{key}}">{{item.title}}</a>
+          <div class="postOptItem__itemCell postOptItem__itemCell-category">{{item.subTitle}}</div>
+          <div class="postOptItem__itemCell postOptItem__itemCell-event glyphicon"
+               ng-class="item.public ? 'glyphicon-check forest ' : 'glyphicon-edit dark'"
+               ng-click="edit.confirmPublick('projects', key)">
+          </div>
+          <button ng-click="edit.deletePost('projects', key)"
+                  class="postOptItem__itemCell postOptItem__itemCell-event glyphicon glyphicon-trash"></button>
+        </div>
+      </div>
+
+      <div ng-switch-when='categories'>
+        <h1>
+          <small>Category</small>
+        </h1>
+        <ul class="postOptions__itemsHead itemsHead itemsHead-threeCat">
+          <li class="itemsHead__item itemsHead__item-index">#</li>
+          <li class="itemsHead__item itemsHead__item-name">Name</li>
+          <li class="itemsHead__item itemsHead__item-event">Delete</li>
+        </ul>
+        <div class="postOptions__postOptItem postOptItem postOptItem-threeCat"
+             ng-repeat="(key, item) in edit.category track by $index">
+          <div class="postOptItem__itemCell postOptItem__itemCell-index">{{item.id}}</div>
+          <div class="postOptItem__itemCell postOptItem__itemCell-name">{{item.value}}</div>
+          <button class="postOptItem__itemCell postOptItem__itemCell-event glyphicon glyphicon-trash"
+                  ng-click="edit.deleteCategory(item.value, key)"></button>
+        </div>
+        <button class="postOptions__createPostCatBtn btn btn-info"
+                ng-click="edit.createCategoryWind ?
+                edit.createCategoryWind = false :
+                edit.createCategoryWind = true;
+                edit.createCategoryValue = ''"
+                ng-class="edit.createCategoryWind ? 'btn-danger' : ''">
+          {{edit.createCategoryWind ? 'Close' : 'Create'}}
+        </button>
+        <div class="postOptions__createPostCat createPostCat" ng-if="edit.createCategoryWind">
+          <input class="createPostCat__input form-control"
+                 type="text"
+                 placeholder="Create category"
+                 ng-model="edit.createCategoryValue">
+          <button class="createPostCat__btn btn btn-default col-sm-2 pull-right"
+                  ng-click="edit.createCategory()">Confirm
+          </button>
+        </div>
+      </div>
+
+      <div class="postOptions__adminContactsCv adminContactsCv">
+        <div ng-switch-when='contacts'>
+          <h1>
+            <small>Contacts</small>
+          </h1>
+          <ul class="adminContactsCv__itemsContSv itemsContSv">
+            <li class="itemsContSv__itemFirst">#</li>
+            <li class="itemsContSv__itemSecond">Name</li>
+            <li class="itemsContSv__itemThird">Last Name</li>
+            <li class="itemsContSv__itemFourth">Description</li>
+            <li class="itemsContSv__itemFifth">Phone</li>
+            <li class="itemsContSv__itemSixth">Email</li>
+            <li class="itemsContSv__itemDelete">Del.</li>
+          </ul>
+          <div class="adminContactsCv__itemsContSv itemsContSv itemsContSv-main"
+               ng-repeat="(key, item) in edit.contacts">
+            <div class="itemsContSv__itemFirst">{{$index + 1}}</div>
+            <div class="itemsContSv__itemSecond">{{item.firstName}}</div>
+            <div class="itemsContSv__itemThird">{{item.lastName ? item.lastName : '-'}}</div>
+            <div class="itemsContSv__itemFourth">{{item.description ? item.description : '-'}}</div>
+            <div class="itemsContSv__itemFifth">{{item.phone}}</div>
+            <div class="itemsContSv__itemSixth">{{item.email}}</div>
+            <button class="itemsContSv__itemDelete glyphicon glyphicon-trash"
+                    ng-click="edit.deleteContact('contacts', item.id, key)"></button>
+          </div>
+        </div>
+
+        <div ng-switch-when='cv'>
+          <h1>
+            <small>CV</small>
+          </h1>
+          <ul class="adminContactsCv__itemsContSv itemsContSv">
+            <li class="itemsContSv__itemFirst">#</li>
+            <li class="itemsContSv__itemSecond">Name</li>
+            <li class="itemsContSv__itemThird itemsContSv__itemThird-cv">Vacansy</li>
+            <li class="itemsContSv__itemFourth itemsContSv__itemFourth-cv">Email</li>
+            <li class="itemsContSv__itemFifth itemsContSv__itemFifth-cv">Phone</li>
+            <li class="itemsContSv__itemSixth itemsContSv__itemSixth-cv">Link</li>
+            <li class="itemsContSv__itemDelete">Del.</li>
+          </ul>
+          <div class="adminContactsCv__itemsContSv itemsContSv itemsContSv-main"
+               ng-repeat="(key, item) in edit.cv">
+            <div class="itemsContSv__itemFirst">{{$index + 1}}</div>
+            <div class="itemsContSv__itemSecond">{{item.name}}</div>
+            <div class="itemsContSv__itemThird itemsContSv__itemThird-cv">{{item.vacancy}}</div>
+            <div class="itemsContSv__itemFourth itemsContSv__itemFourth-cv">{{item.email}}</div>
+            <div class="itemsContSv__itemFifth itemsContSv__itemFifth-cv">{{item.phone}}</div>
+            <a class="itemsContSv__itemSixth itemsContSv__itemSixth-cv" ng-href="{{edit.url}}{{item.file}}" ng-if="item.file">Dowload
+              file</a>
+            <a class="itemsContSv__itemSixth itemsContSv__itemSixth-cv" href="" ng-if="!item.file">-</a>
+            <button class="itemsContSv__itemDelete glyphicon glyphicon-trash"
+                    ng-click="edit.deleteContact('cv', item.id, key)"></button>
+          </div>
+        </div>
+      </div>
+
+    </section>
+    <div class="dashboardMain__saveMsg btn btn-success"
+         ng-if="edit.success"
+         ng-class="edit.errorStyle">
+         {{edit.success}}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,97 @@
+<div class="darkTitle">
+  <p class="darkTitle__dscr">Tell about your</p>
+  <h2 class="darkTitle__title">Project</h2>
+</div>
+<section class="contactBox">
+  <div class="contactBox__lightTitle lightTitle wrapCentering wrapCentering-lg-m">
+    <p class="lightTitle__dscr">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean luctus bibendum gravida.
+      Aliquam nec ex libero. Morbi egestas magna sit amet tincidunt bibendum. Etiam et nunc mollis, condimentum arcu
+      sed, venenatis nisl. Curabitur sit</p>
+  </div>
+  <div class="contactBox__formBox formBox wrapCentering wrapCentering-lg">
+    <form name="contacts" class="formBox__form" novalidate>
+      <div class="formBox__formBoxHolder formBoxHolder">
+        <label class="formBoxHolder__borderLabel borderLabel">
+          <input class="formBoxHolder__input inputKind" type="text" placeholder="First name*"
+                 name="firstname"
+                 ng-minlength="3"
+                 ng-maxlength="15"
+                 ng-model="cont.firstName"
+                 ng-class="contacts.firstname.$invalid && !contacts.firstname.$pristine ? 'border' : ''"
+                 required>
+          <div ng-show="contacts.firstname.$invalid && !contacts.firstname.$pristine" class="borderIcon"></div>
+        </label>
+        <label class="formBoxHolder__borderLabel borderLabel">
+          <input class="formBoxHolder__input inputKind" type="text" placeholder="Last name*"
+                 name="lastname"
+                 ng-minlength="3"
+                 ng-maxlength="15"
+                 ng-model="cont.lastName"
+                 ng-class="contacts.lastname.$invalid && !contacts.lastname.$pristine ? 'border' : ''"
+                 required>
+          <div ng-show="contacts.lastname.$invalid && !contacts.lastname.$pristine" class="borderIcon"></div>
+        </label>
+        <label class="formBoxHolder__borderLabel borderLabel">
+          <input class="formBoxHolder__input inputKind" type="email" placeholder="Email*"
+                 name="email"
+                 ng-minlength="6"
+                 ng-maxlength="30"
+                 ng-model="cont.email"
+                 ng-class="contacts.email.$invalid && !contacts.email.$pristine ? 'border' : ''"
+                 required>
+          <div ng-show="contacts.email.$invalid && !contacts.email.$pristine" class="borderIcon"></div>
+        </label>
+        <label class="formBoxHolder__borderLabel borderLabel">
+          <input class="formBoxHolder__input inputKind" type="text" placeholder="Phone*"
+                 name="phone"
+                 ng-model="cont.phone"
+                 ng-minlength="10"
+                 ng-maxlength="13"
+                 ng-pattern="cont.numberRegExp"
+                 ng-class="contacts.phone.$invalid && !contacts.phone.$pristine ? 'border' : ''"
+                 required>
+          <div ng-show="contacts.phone.$invalid && !contacts.phone.$pristine" class="borderIcon"></div>
+        </label>
+        <label class="formBoxHolder__borderLabel formBoxHolder__borderLabel-textarea borderLabel">
+          <textarea class="formBoxHolder__textarea inputKind inputKind-textarea" placeholder="Description"
+                    name="description"
+                    ng-maxlength="1000"
+                    ng-class="contacts.description.$invalid && !contacts.description.$pristine ? 'border' : ''"
+                    ng-model="cont.description"></textarea>
+          <div ng-show="contacts.description.$invalid && !contacts.description.$pristine" class="borderIcon"></div>
+        </label>
+      </div>
+      <div class="formBoxHolder__applyLink applyLink">
+        <button class="formBoxHolder__submit" type="submit"
+                ng-disabled="contacts.$invalid"
+                ng-click="cont.sendForm($event, contacts)">
+          Send
+        </button>
+        <span ng-repeat="i in [1,2,3,4]" class="applyLink__line-{{i}}"></span>
+      </div>
+    </form>
+  </div>
+</section>
+<section class="contactAddress">
+  <ul class="contactAddress__addressList addressList wrapCentering wrapCentering-lg">
+    <li class="addressList__addressItem addressItem addressItem-address">
+      <p class="addressItem__dscr">Kovalska str, 9, Kharkiv, Kharkiv region, 61000</p>
+    </li>
+    <li class="addressList__addressItem addressItem addressItem-email">
+      <p class="addressItem__dscr">sales@knubisoft.com</p>
+    </li>
+    <li class="addressList__addressItem addressItem addressItem-phone">
+      <p class="addressItem__dscr">+1 (408) 844-4474</p>
+    </li>
+  </ul>
+</section>
+
+<div class="sendingSuccess animate-if" ng-if="cont.success">
+  <div class="sendingSuccess__box">
+    <p class="sendingSuccess__text" ng-if="cont.success === 'Success'">
+      Thank you! </br>
+      Thanks for your inquiry... we will be in touch as soon as possible. :)
+    </p>
+    <p class="sendingSuccess__text" ng-if="cont.success === 'Error'">{{cont.success}}</p>
+  </div>
+</div>

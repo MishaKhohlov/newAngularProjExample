@@ -1,0 +1,283 @@
+<link rel="stylesheet" href="style/common_admin.css">
+
+<section class="container">
+  <div class="vacanciesAdmin row">
+    <a class="vacanciesAdmin__backDash pull-right btn btn-default"
+       href="#" ng-click="editSec.goHome($event)">To dashboard</a>
+
+    <div class="vacanciesAdmin__adminFieldsGroup adminFieldsGroup form-horizontal"
+         ng-if="editSec.$stateParams.section === 'vacancies'">
+      <h1 class="adminPageTitle">Vacancies</h1>
+      <div class="adminFieldsGroup__vacPosCheck vacPosCheck form-group">
+        <h2 class="vacPosInput__title vacPosInput__title-noMgTop"><small>Position</small></h2>
+        <div class="col-sm-7">
+          <input class="form-control"
+          type="text"
+          placeholder="position"
+          ng-model="editSec.vacancies.position">
+        </div>
+        <label
+          ng-class="editSec.vacancies.public ? 'glyphicon-check' : 'glyphicon-edit dark'"
+          class="vacPosCheck__checkPublish checkPublish checkbox-inline text-right col-sm-5 glyphicon">
+          <span class="checkPublish__title">Public</span>
+          <input class="checkPublish__input"
+                 type="checkbox"
+                 ng-model="editSec.vacancies.public">
+        </label>
+      </div>
+      <div class="adminFieldsGroup__vacPosInput vacPosInput form-group">
+        <h2 class="vacPosInput__title"><small>Skills</small></h2>
+        <div class="col-sm-7">
+          <input class="vacPosInput__input form-control"
+                 type="text" ng-model="editSec.vacancies.skills[key]"
+                 ng-repeat="(key, item) in editSec.vacancies.skills track by $index">
+        </div>
+        <button class="btn btn-info"
+                ng-click="editSec.addInput(editSec.$stateParams.section, 'skills')">
+                Add Input</button>
+      </div>
+      <div class="adminFieldsGroup__vacPosInput vacPosInput form-group">
+        <h2 class="vacPosInput__title"><small>Vision</small></h2>
+        <div class="col-sm-7">
+          <input class="vacPosInput__input form-control"
+                 type="text" ng-model="editSec.vacancies.vision[key]"
+                 ng-repeat="(key, item) in editSec.vacancies.vision track by $index">
+        </div>
+        <button class="btn btn-info"
+                ng-click="editSec.addInput(editSec.$stateParams.section, 'vision')">
+                Add Input</button>
+      </div>
+      <div class="adminFieldsGroup__vacPosInput vacPosInput vacPosInput-bigMgBot form-group">
+        <h2 class="vacPosInput__title"><small>Offer</small></h2>
+        <div class="col-sm-7">
+          <input class="vacPosInput__input form-control"
+               type="text" ng-model="editSec.vacancies.offer[key]"
+               ng-repeat="(key, item) in editSec.vacancies.offer track by $index">
+        </div>
+        <button class="btn btn-info"
+                ng-click="editSec.addInput(editSec.$stateParams.section, 'offer')">
+                Add Input</button>
+      </div>
+      <div class="adminFieldsGroup__vacPosInput vacPosInput-bigMgBot form-group">
+        <h2 class="vacPosInput__title vacPosInput__title-noMgTop"><small>Description</small></h2>
+        <div class="col-sm-8">
+          <textarea class="form-control"
+                  rows="6"
+                  ng-model="editSec.vacancies.description"
+                  placeholder="Description"></textarea>
+        </div>
+      </div>
+      <pre>
+       {{editSec.vacancies | json}}
+      </pre>
+    </div>
+
+
+    <div class="adminFieldsGroup form-horizontal" ng-if="editSec.$stateParams.section === 'blogs'">
+      <h1 class="adminPageTitle">Blogs</h1>
+      <div class="vacPosCheck form-group">
+        <h2 class="vacPosInput__title vacPosInput__title-noMgTop"><small>Blog title</small></h2>
+        <div class="col-sm-7">
+          <input class="form-control"
+                 type="text"
+                 ng-model="editSec.blogs.title"
+                 placeholder="Title">
+        </div>
+        <label
+          ng-class="editSec.blogs.public ? 'glyphicon-check' : 'glyphicon-edit dark'"
+          class="vacPosCheck__checkPublish checkPublish checkbox-inline text-right col-sm-5 glyphicon glyphicon-check">
+          <span class="checkPublish__title">Public</span>
+          <input class="checkPublish__input"
+                 type="checkbox"
+                 ng-model="editSec.blogs.public">
+        </label>
+      </div>
+      <div class="adminFieldsGroup__vacPosInput form-group">
+        <h2 class="vacPosInput__title vacPosInput__title-noMgTop"><small>Category</small></h2>
+        <div class="col-sm-3">
+          <select class="form-control"
+                  ng-model="editSec.blogs.category.id">
+            <option value="{{item.id}}"
+                    ng-repeat="item in editSec.category track by $index">
+                    {{item.value}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="adminFieldsGroup__vacPosInput form-group">
+        <h2 class="vacPosInput__title vacPosInput__title-noMgTop"><small>Description</small></h2>
+        <div class="col-sm-7">
+          <textarea class="form-control"
+                    rows="6"
+                    ng-model="editSec.blogs.description"
+                    placeholder="Description"></textarea>
+        </div>
+      </div>
+      <div class="fileformBox fileformBox-adminAddFile">
+        <div class="fileformBox__label">{{editSec.attachFileName}}</div>
+        <input type="file"
+               class="fileformBox__input fileformBox__input-admin"
+               name="cv"
+               ng-files
+               file-area="editSec.$file"
+               file-area-name="editSec.attachFileName"/>
+        <div class="fileformBox__btn fileformBox__btn-admin glyphicon glyphicon-file"></div>
+      </div>
+      <div class="adminFieldsGroup__vacPosInput form-group">
+        <h2 class="vacPosInput__title"><small>Title for Google</small></h2>
+        <div class="col-sm-7">
+          <input class="form-control"
+                 type="text"
+                 ng-model="editSec.blogs.titleGoogle"
+                 placeholder="Title">
+        </div>
+      </div>
+      <div class="adminFieldsGroup__vacPosInput bigMgBt form-group">
+        <h2 class="vacPosInput__title vacPosInput__title-noMgTop"><small>Meta description</small></h2>
+        <div class="col-sm-7">
+          <input class="vacPosInput__input form-control"
+                 type="text"
+                 ng-model="editSec.blogs.meta[key]"
+                 ng-repeat="(key, item) in editSec.blogs.meta track by $index"
+                 placeholder="{{editSec.metaAddName[key]}}">
+        </div>
+        <button class="btn btn-info"
+                disabled
+                ng-click="editSec.addInput(editSec.$stateParams.section, 'meta')">
+                Add input</button>
+      </div>
+      <pre>
+       {{editSec.blogs | json}}
+      </pre>
+    </div>
+
+    <div class="adminFieldsGroup form-horizontal" ng-if="editSec.$stateParams.section === 'projects'">
+      <h1 class="adminPageTitle">Projects</h1>
+      <div class="vacPosCheck form-group">
+        <h2 class="vacPosInput__title vacPosInput__title-noMgTop"><small>Project title</small></h2>
+        <div class="col-sm-7">
+          <input class="form-control"
+                 type="text"
+                 ng-model="editSec.projects.title"
+                 placeholder="Title">
+        </div>
+        <label
+          ng-class="editSec.projects.public ? 'glyphicon-check' : 'glyphicon-edit dark'"
+          class="vacPosCheck__checkPublish checkPublish checkbox-inline text-right col-sm-5 glyphicon glyphicon-check">
+          <span class="checkPublish__title">Public</span>
+          <input class="checkPublish__input"
+                 type="checkbox"
+                 ng-model="editSec.projects.public">
+        </label>
+      </div>
+      <div class="vacPosCheck form-group">
+        <h2 class="vacPosInput__title vacPosInput__title-noMgTop"><small>Project SubTitle</small></h2>
+        <div class="col-sm-7">
+          <input class="form-control"
+                 type="text"
+                 ng-model="editSec.projects.subTitle"
+                 placeholder="SubTitle">
+        </div>
+      </div>
+      <div class="adminFieldsGroup__vacPosInput form-group">
+        <h2 class="vacPosInput__title vacPosInput__title-noMgTop"><small>Technologies</small></h2>
+        <div class="col-sm-3">
+          <select class="form-control bigHeightMultiple"
+                  ng-model="editSec.projects.technologies"
+                  multiple>
+            <option value="{{item}}"
+                    ng-repeat="item in editSec.technologyAll track by $index">
+                    {{item}}</option>
+          </select>
+        </div>
+        <p class="col-sm-4">Максимальное колличество технологий на добавление не более <b>27!</b></p>
+      </div>
+      <div class="adminFieldsGroup__vacPosInput form-group">
+        <h2 class="vacPosInput__title vacPosInput__title-noMgTop"><small>Description</small></h2>
+        <div class="col-sm-7">
+          <textarea class="form-control"
+                    rows="6"
+                    ng-model="editSec.projects.description"
+                    placeholder="Description"
+                    maxlength="500"></textarea>
+        </div>
+      </div>
+      <div class="adminFieldsGroup__vacPosInput form-group">
+        <h2 class="vacPosInput__title vacPosInput__title-noMgTop"><small>Challenge description</small></h2>
+        <div class="col-sm-7">
+          <textarea class="form-control"
+                    rows="6"
+                    ng-model="editSec.projects.challenge"
+                    placeholder="Challenge description"
+                    maxlength="500"></textarea>
+        </div>
+      </div>
+      <div class="adminFieldsGroup__vacPosInput form-group">
+        <h2 class="vacPosInput__title vacPosInput__title-noMgTop"><small>Process description</small></h2>
+        <div class="col-sm-7">
+          <textarea class="form-control"
+                    rows="6"
+                    ng-model="editSec.projects.process"
+                    placeholder="Process description"
+                    maxlength="500"></textarea>
+        </div>
+      </div>
+      <div class="adminFieldsGroup__vacPosInput form-group">
+        <h2 class="vacPosInput__title vacPosInput__title-noMgTop"><small>Result description</small></h2>
+        <div class="col-sm-7">
+          <textarea class="form-control"
+                    rows="6"
+                    ng-model="editSec.projects.result"
+                    placeholder="Result description"
+                    maxlength="500"></textarea>
+        </div>
+      </div>
+      <section class="adminFieldsGroup__addFilesBox addFilesBox">
+        <div class="fileformBox fileformBox-adminAddFile">
+          <div class="fileformBox__label">{{editSec.attachFileNameProjects[0]}}</div>
+          <input type="file"
+                 class="fileformBox__input fileformBox__input-admin"
+                 name="cv"
+                 ng-files file-area="editSec.$fileProjects[0]" file-area-name="editSec.attachFileNameProjects[0]"/>
+          <div class="fileformBox__btn fileformBox__btn-admin glyphicon glyphicon-file"></div>
+        </div>
+        <div class="fileformBox fileformBox-adminAddFile">
+          <div class="fileformBox__label">{{editSec.attachFileNameProjects[1]}}</div>
+          <input type="file"
+                 class="fileformBox__input fileformBox__input-admin"
+                 name="cv"
+                 ng-files file-area="editSec.$fileProjects[1]" file-area-name="editSec.attachFileNameProjects[1]"/>
+          <div class="fileformBox__btn fileformBox__btn-admin glyphicon glyphicon-file"></div>
+        </div>
+        <div class="fileformBox fileformBox-adminAddFile">
+          <div class="fileformBox__label">{{editSec.attachFileNameProjects[2]}}</div>
+          <input type="file"
+                 class="fileformBox__input fileformBox__input-admin"
+                 name="cv"
+                 ng-files file-area="editSec.$fileProjects[2]" file-area-name="editSec.attachFileNameProjects[2]"/>
+          <div class="fileformBox__btn fileformBox__btn-admin glyphicon glyphicon-file"></div>
+        </div>
+        <div class="fileformBox fileformBox-adminAddFile">
+          <div class="fileformBox__label">{{editSec.attachFileNameProjects[3]}}</div>
+          <input type="file"
+                 class="fileformBox__input fileformBox__input-admin"
+                 name="cv"
+                 ng-files file-area="editSec.$fileProjects[3]" file-area-name="editSec.attachFileNameProjects[3]"/>
+          <div class="fileformBox__btn fileformBox__btn-admin glyphicon glyphicon-file"></div>
+        </div>
+      </section>
+      <pre>
+       {{editSec.projects | json}}
+      </pre>
+    </div>
+
+    <button class="vacanciesAdmin__save btn btn-success" ng-click="editSec.saveData(editSec.$stateParams.section)">Save</button>
+    <button class="vacanciesAdmin__delete pull-right btn btn-danger"
+            ng-click="editSec.deletePost()"
+            ng-if="editSec.$stateParams.key !== 'create'">Delete</button>
+
+    <div class="dashboardMain__saveMsg dashboardMain__saveMsg-center btn btn-success"
+         ng-if="editSec.success">
+         {{editSec.success}}
+    </div>
+  </div>
+</section>

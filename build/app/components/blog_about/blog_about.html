@@ -1,0 +1,42 @@
+<section class="blogPageWrap__blogMoreMain blogMoreMain" ng-if="blogAb.article.public">
+ <!-- ng-init="!blogAb.article.public ? blogAb.$state.go('blog'): ''"-->
+  <h5 class="blogMoreMain__title">{{blogAb.article.category.value}} / <span>{{blogAb.article.publicDate}}</span></h5>
+  <div class="blogMoreMain__blogMoreDscr blogMoreDscr">
+    <div class="blogMoreDscr__blogMoreDscrImg blogMoreDscrImg">
+      <img ng-src="{{blogAb.url}}{{blogAb.article.img}}" alt="picture for blog" class="blogMoreDscrImg__img">
+      <p class="blogMoreDscr__dscr">
+        {{::blogAb.article.description}}
+      </p>
+    </div>
+  </div>
+  <div class="blogMoreMain__blogMoreFooter blogMoreFooter">
+    <div class="blogMoreMain__blogMoreArticle blogMoreArticle">
+      <span class="blogMoreArticle__title">{{blogAb.article.publicDate}}</span>
+      <ul class="blogMoreArticle__blogContentSoc blogContentSoc">
+        <li class="blogContentSoc__item">
+          <a href="#" class="blogContentSoc__link blogContentSoc__link-facebook"
+             ng-click="blogAb.shareSocial($event, 'facebook')"></a>
+        </li>
+        <li class="blogContentSoc__item">
+          <a class="blogContentSoc__link blogContentSoc__link-twitter"
+             target="_blank"
+             href="https://twitter.com/intent/tweet?text={{blogAb.article.title}}%20%E2%80%94%20&amp;tw_p=tweetbutton&amp;url={{blogAb.urlBlog}}{{blogAb.$stateParams.key}}"></a>
+        </li>
+        <!-- <li class="blogContentSoc__item blogContentSoc__item-noMrRight">
+           <a href="#" class="blogContentSoc__link blogContentSoc__link-instagram" ng-click="blogAb.shareSocial($event, 'instagram')"></a>
+         </li>-->
+      </ul>
+    </div>
+    <div class="blogMoreMain__blogMorePagin blogMorePagin">
+      <button class="blogMorePagin__btn blogMorePagin__btn-prev"
+              ng-if="blogAb.article.index != 0"
+              ng-click="blogAb.goToArcticle(false)">Previous Post
+      </button>
+      <button class="blogMorePagin__btn blogMorePagin__btn-next"
+              ng-click="blogAb.goToArcticle(true)"
+              ng-if="blogAb.article.index < blogAb.blogs.length - 1">Next Post
+      </button>
+    </div>
+  </div>
+</section>
+<!--<pre>{{blogAb.article | json}}</pre>-->

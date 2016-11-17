@@ -1,0 +1,122 @@
+<input class="burgerMenuInput" id="headerBurgerMenu" type="checkbox" ng-model="app.toogleBurgerMenuUp">
+<header class="pageHeader">
+  <a href="#" class="pageHeader__homeLink" ui-sref="home" ng-click="app.goUp($event)">
+    <h1 class="pageHeader__logo">Knubisoft</h1>
+  </a>
+
+  <nav class="pageHeader__nav headerMenu">
+    <a ng-repeat="item in app.linksHeader"
+       ui-sref="{{item.component}}"
+       ui-sref-active="headerMenu__link-statusActive"
+       ng-click="app.toogleMenu()"
+       class="headerMenu__link">{{item.name}}</a>
+  </nav>
+  <label for="headerBurgerMenu" class="pageHeader__burgerMenu burgerMenu"></label>
+  <div class="pageHeader__requestQuote"
+       ng-click="app.$rootScope.request ? app.$rootScope.request = false : app.$rootScope.request = true">request a quote</div>
+  <div class="pageHeader__langBlock langBlock">
+    <button class="langBlock__btn" ng-click="app.changeLanguage('en')">En</button>
+    <button class="langBlock__btn" ng-click="app.changeLanguage('fr')">Fr</button>
+  </div>
+</header>
+<pre>{{}}</pre>
+<main ui-view class="pageMain"></main>
+
+<input class="burgerMenuInput" id="footerBurgerMenu" type="checkbox" ng-model="app.toogleBurgerMenuBottom">
+<footer class="pageFooter">
+  <h4 class="pageFooter__title">Create awesome things with us</h4>
+  <div class="pageFooter__bigButton bigButton" ng-click="app.$state.go('contacts')">
+    <div class="bigButton__border"></div>
+    <div class="bigButton__borderSecond"></div>
+    <span class="bigButton__text">Start engine</span>
+  </div>
+  <label for="footerBurgerMenu" class="pageFooter__burgerMenu burgerMenu burgerMenu-footerLight"></label>
+  <nav class="pageFooter__nav footerMenu">
+    <a href="#" ng-click="app.goUp($event)" class="footerMenu__link">Home</a>
+    <a ng-repeat="item in app.linksFooter"
+       ng-click="app.toogleMenu()"
+       ui-sref-active="footerMenu__link-active"
+       ui-sref="{{item.component}}"
+       class="footerMenu__link">{{item.name}}</a>
+  </nav>
+  <div class="pageFooter__socLink socLink">
+    <a href="https://www.facebook.com/knubisoft/" target="_blank" class="socLink__item"><span>facebook</span></a></a>
+    <a href="https://twitter.com/knubisoft" target="_blank" class="socLink__item"><span>twitter</span></a></a>
+    <a href="https://www.instagram.com/knubisoft/" target="_blank" class="socLink__item"><span>instagram</span></a></a>
+  </div>
+  <p class="pageFooter__copyright">&copy; Knubisoft, 2016. Terms &amp; Privacy Policy.</p>
+</footer>
+
+<div class="reqQuotePopup animate-if" ng-if="app.$rootScope.request" ng-init="app.initPopup()" ng-click="app.closePopUp($event)">
+  <div class="reqQuotePopup__reqQuotePopupBox reqQuotePopupBox" >
+    <div class="reqQuotePopupBox__close" ng-click="app.enadledScrollAndClose()"></div>
+    <p class="reqQuotePopupBox__title">Sed ut perspiciatisSed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium dSed ut perspiciatis unde omnis iste natus</p>
+    <div class="reqQuotePopupBox__reqQuoteFormBox reqQuoteFormBox">
+      <form action="#" name="requestPopUp" novalidate>
+        <div class="inputTextareaBox">
+          <div class="inputTextareaBox__inputsHolder">
+            <label class="inputTextareaBox__borderLabel borderLabel">
+              <input class="formBoxHolder__input inputKind" type="text" placeholder="First name*"
+                     name="firstname"
+                     ng-minlength="3"
+                     ng-maxlength="15"
+                     ng-model="app.firstName"
+                     ng-class="requestPopUp.firstname.$invalid && !requestPopUp.firstname.$pristine ? 'border' : ''"
+                     required>
+              <div ng-show="requestPopUp.firstname.$invalid && !requestPopUp.firstname.$pristine" class="borderIcon"></div>
+            </label>
+            <label class="inputTextareaBox__borderLabel borderLabel">
+              <input class="formBoxHolder__input inputKind" type="email" placeholder="Email*"
+                     name="email"
+                     ng-minlength="6"
+                     ng-maxlength="30"
+                     ng-model="app.email"
+                     ng-class="requestPopUp.email.$invalid && !requestPopUp.email.$pristine ? 'border' : ''"
+                     required>
+              <div ng-show="requestPopUp.email.$invalid && !requestPopUp.email.$pristine" class="borderIcon"></div>
+            </label>
+            <label class="inputTextareaBox__borderLabel borderLabel">
+              <input class="formBoxHolder__input inputKind" type="text" placeholder="Phone"
+                     name="phone"
+                     ng-model="app.phone"
+                     ng-minlength="10"
+                     ng-maxlength="13"
+                     ng-pattern="app.numberRegExp"
+                     ng-class="requestPopUp.phone.$invalid && !requestPopUp.phone.$pristine ? 'border' : ''"
+                     required>
+              <div ng-show="requestPopUp.phone.$invalid && !requestPopUp.phone.$pristine" class="borderIcon"></div>
+            </label>
+          </div>
+          <div class="inputTextareaBox__textareaHolder">
+            <label class="inputTextareaBox__borderLabel inputTextareaBox__borderLabel-textarea borderLabel">
+              <textarea class="formBoxHolder__textarea inputKind inputKind-textarea" placeholder="Description"
+                        name="description"
+                        ng-maxlength="300"
+                        ng-class="requestPopUp.description.$invalid && !requestPopUp.description.$pristine ? 'border' : ''"
+                        ng-model="app.description"></textarea>
+              <div ng-show="requestPopUp.description.$invalid && !requestPopUp.description.$pristine" class="borderIcon"></div>
+            </label>
+          </div>
+        </div>
+        <div class="formBoxHolder__applyLink applyLink">
+          <button class="formBoxHolder__submit" type="submit"
+                  ng-disabled="requestPopUp.$invalid"
+                  ng-click="app.sendRequestForm($event, requestPopUp)">
+            Send
+          </button>
+          <span ng-repeat="i in [1,2,3,4]" class="applyLink__line-{{i}}"></span>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="sendingSuccess animate-if" ng-if="app.success">
+  <div class="sendingSuccess__box">
+    <p class="sendingSuccess__text" ng-if="app.success === 'Success'">
+      Thank you! </br>
+      Thanks for your inquiry... we will be in touch as soon as possible. :)
+    </p>
+    <p class="sendingSuccess__text" ng-if="app.success === 'Error'">{{app.success}}</p>
+  </div>
+</div>

@@ -1,0 +1,66 @@
+<section class="aboutWorkHolder">
+  <div class="aboutWorkHolder__aboutWorkTopBanner aboutWorkTopBanner">
+    <button class="aboutWorkTopBanner__btn aboutWorkTopBanner__btn-prev applyLink"
+            ng-if="workAb.currentIndex > 0"
+            ng-click="workAb.goToPrevProject()">
+      Previous Work
+      <span ng-repeat="i in [1,2,3,4]" class="applyLink__line-{{i}}"></span>
+    </button>
+    <h2 class="aboutWorkTopBanner__title">{{workAb.projects.title}}</h2>
+    <img ng-src="{{workAb.url}}{{workAb.projects.imgTitle}}" alt="img title" class="aboutWorkTopBanner__img">
+    <button class="aboutWorkTopBanner__btn aboutWorkTopBanner__btn-next applyLink"
+            ng-if="workAb.currentIndex < workAb.lengthAllItem"
+            ng-click="workAb.goToNextProject()">
+      Next Work
+      <span ng-repeat="i in [1,2,3,4]" class="applyLink__line-{{i}}"></span>
+    </button>
+  </div>
+  <div class="aboutWorkHolder__aboutWorkSubMenuBox aboutWorkSubMenuBox" ng-class="workAb.positionMenu ? 'aboutWorkSubMenuBox-fixed' : ''">
+    <div class="aboutWorkSubMenuBox__wrap">
+      <ul class="aboutWorkSubMenuBox__aboutWorkSubMenu aboutWorkSubMenu wrapCentering wrapCentering-lg" scroll-nav active="workAb.activePosition" menu="workAb.positionMenu">
+        <li data-name="challenge" class="aboutWorkSubMenu__item" ng-class="workAb.activePosition === 'challenge' ? 'aboutWorkSubMenu__item-active' : ''">1.The Challenge</li>
+        <li data-name="process" class="aboutWorkSubMenu__item" ng-class="workAb.activePosition === 'process' ? 'aboutWorkSubMenu__item-active' : ''">2.The Process</li>
+        <li data-name="result" class="aboutWorkSubMenu__item" ng-class="workAb.activePosition === 'result' ? 'aboutWorkSubMenu__item-active' : ''">3.Result</li>
+      </ul>
+    </div>
+  </div>
+  <div class="aboutWorkHolder__aboutWorkDscrBox aboutWorkDscrBox aboutWorkDscrBox-greyBg challengSection"
+       ng-class="workAb.positionMenu ? 'aboutWorkDscr-morePadding' : ''">
+    <div class="aboutWorkDscrBox__aboutWorkDscr aboutWorkDscr wrapCentering wrapCentering-lg-m">
+      <h2 class="aboutWorkDscr__title">The Challenge</h2>
+      <p class="aboutWorkDscr__dscr">{{workAb.projects.challenge}}</p>
+    </div>
+  </div>
+  <div class="aboutWorkHolder__aboutWorkMainImg aboutWorkMainImg">
+    <img ng-src="{{workAb.url}}{{workAb.projects.imgContent}}" alt="img content" class="aboutWorkMainImg__img">
+  </div>
+  <div class="aboutWorkDscrBox processSection">
+    <div class="aboutWorkDscrBox__aboutWorkDscr aboutWorkDscr wrapCentering wrapCentering-lg-m">
+      <h2 class="aboutWorkDscr__title">The Process</h2>
+      <p class="aboutWorkDscr__dscr">{{workAb.projects.process}}</p>
+    </div>
+  </div>
+  <div class="aboutWorkHolder__aboutWorkMainImg aboutWorkMainImg">
+    <img ng-src="{{workAb.url}}{{workAb.projects.imgContent2}}" alt="img content" class="aboutWorkMainImg__img">
+  </div>
+  <div class="aboutWorkDscrBox resultSection">
+    <div class="aboutWorkDscrBox__aboutWorkDscr aboutWorkDscr wrapCentering wrapCentering-lg-m">
+      <h2 class="aboutWorkDscr__title">Result</h2>
+      <p class="aboutWorkDscr__dscr">{{workAb.projects.result}}</p>
+    </div>
+  </div>
+  <section class="homePageBlog">
+    <ul class="homePageBlog__listBlog listBlog">
+      <li class="listBlog__blogItem blogItem" ng-repeat="(key, item) in workAb.blogs.slice(0,3) | publicStatus">
+        <a href="#/blog/article/{{item.id}}" class="blogItem__link">
+          <h4 class="blogItem__title">{{item.title}}</h4>
+          <p class="blogItem__dscr">{{item.description.slice(0, 300)}}</p>
+        </a>
+        <img class="blogItem__bgImg" ng-src="{{workAb.url}}{{item.img}}" alt="img for blog">
+      </li>
+    </ul>
+  </section>
+</section>
+
+
+<!--<pre>{{workAb.projects | json}}</pre>-->

@@ -1,0 +1,124 @@
+<section class="letsTogether">
+  <div class="letsTogether__holder">
+    <h3 class="letsTogether__title"><span>Let's do apps</span><div translate="title">together</div></h3>
+    <p class="letsTogether__dscr">We guide our clients through the development process, from concept to deployment and
+      beyond, with responsive technical support for every project.</p>
+    <a href="#" ng-click="$event.preventDefault(); home.$state.go('contacts')" class="letsTogether__startLink">Start You
+      Project Now</a>
+    <div class="letsTogether__mouseIcon"></div>
+  </div>
+</section>
+<section class="doMore">
+  <div class="doMore__lightTitle lightTitle wrapCentering wrapCentering-lg-m">
+    <h3 class="lightTitle__title">We do more</h3>
+    <p class="lightTitle__dscr">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean luctus bibendum gravida.
+      Aliquam nec ex libero. Morbi egestas magna sit amet tincidunt bibendum. Etiam et nunc mollis, condimentum arcu
+      sed, venenatis nisl. Curabitur sit</p>
+  </div>
+  <ul class="doMore__list doMoreList">
+    <li class="doMoreList__item doMoreListItem {{item.className}}" ng-repeat="item in home.listStrategy">
+      <span class="doMoreListItem__title">{{item.title}}</span>
+      <p class="doMoreListItem__dscr">{{item.description}}</p>
+    </li>
+  </ul>
+  <slick settings="home.slickConfigDoMore" ng-show="home.slickConfigDoMore.enabled" class="doMore__list doMoreList doMoreList-slick">
+    <div class="doMoreList__item doMoreListItem {{item.className}}" ng-repeat="item in home.listStrategy">
+      <span class="doMoreListItem__title">{{item.title}}</span>
+      <p class="doMoreListItem__dscr">{{item.description}}</p>
+    </div>
+  </slick>
+  <button class="doMore__itemLinkAll itemLinkAll"
+          ng-click="home.$state.go('services')">
+          Read more</button>
+</section>
+<section class="oneStepHolder">
+  <div class="oneStepHolder__wrapBox" steps-animation>
+    <div class="oneStepHolder__oneStep oneStep">
+      <p class="oneStep__title">Just one step to change the world</p>
+      <p class="oneStep__dscr">More than 50 world companies already work with us</p>
+    </div>
+    <ul class="oneStepHolder__stepsIcons stepsIcons">
+      <li class="stepsIcons__item" ng-repeat="step in [0,1,2,3,4,5]"></li>
+    </ul>
+  </div>
+  <div class="oneStepHolder__slider recallSlider">
+    <div class="recallSlider__leftArrow recallSliderArrow" ng-click="home.slickConfigReview.method.slickPrev()"></div>
+    <slick settings="home.slickConfigReview">
+      <div class="recallList__item recallItem" ng-repeat="comment in home.reviews">
+        <div class="recallItem__box wrapCentering wrapCentering-lg">
+          <div class="recallItem__logo recallLogo">
+            <img ng-src="./assets/images/{{comment.img}}.jpg" alt="{{comment.img}}" class="recallLogo__img">
+          </div>
+          <div class="recallItem__dscr recallDscr">
+            <p class="recallDscr__dscr">{{comment.description}}</p>
+            <p class="recallDscr__signature">
+              {{comment.human}} <br>
+              {{comment.position}} <br>
+              {{comment.company}}
+            </p>
+          </div>
+        </div>
+      </div>
+    </slick>
+    <div class="recallSlider__rightArrow recallSliderArrow" ng-click="home.slickConfigReview.method.slickNext()"></div>
+  </div>
+</section>
+<section class="recentProjects">
+  <div class="recentProjects__linkToProjects allProjects">
+    <a href="#" ng-click="$event.preventDefault(); home.$state.go('work')" class="allProjects__link">All projects
+      here!</a>
+  </div>
+  <div class="recentProjects__lightTitle lightTitle lightTitle-smallPd wrapCentering wrapCentering-lg-m">
+    <h3 class="lightTitle__title">Recent projects</h3>
+    <p class="lightTitle__dscr">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean luctus bibendum gravida.
+      Aliquam nec ex libero. Morbi egestas magna sit amet tincidunt bibendum. Etiam et nunc mollis, condimentum arcu
+      sed, venenatis nisl. Curabitur sit</p>
+  </div>
+  <div class="recentProjects__slider recentSlider">
+    <slick settings="home.slickConfigProjects">
+      <div class="recentSlider__recentItem recentItem" ng-repeat="(key, project) in home.projects">
+        <div class="recentItem__box wrapCentering wrapCentering-lg">
+          <div class="recentItem__recentDscr recentDscr">
+            <h5 class="recentDscr__title">{{project.title}}</h5>
+            <p class="recentDscr__dscr">{{project.description.slice(0, 580)}}</p>
+            <div class="recentDscr__technologiesUsed technologiesUsed">
+              <p class="technologiesUsed__title">Technologies Used</p>
+              <ul class="technologiesUsed__tecList tecList">
+                <li class="tecList__tecItem tecItem" ng-repeat="tech in project.technologies track by $index">
+                  <img class="tecItem__img tecItem__img-small" ng-src="./assets/images/prodIcon/{{tech}}.png" alt="{{tech}}">
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="recentItem__recentPicture recentPicture">
+            <a href="#/works/{{key}}" class="recentPicture__link itemLinkAll itemLinkAll-light">About project</a>
+            <img ng-src="{{home.url}}{{project.imgTitleHome}}" class="recentPicture__img" alt="{{project.img}}">
+          </div>
+        </div>
+      </div>
+    </slick>
+  </div>
+</section>
+<section class="introduce">
+  <div class="introduce__lightTitle lightTitle wrapCentering wrapCentering-lg-m">
+    <h3 class="lightTitle__title">Let's introduce</h3>
+    <p class="lightTitle__dscr">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean luctus bibendum gravida.
+      Aliquam nec ex libero. Morbi egestas magna sit amet tincidunt bibendum. Etiam et nunc mollis, condimentum arcu
+      sed, venenatis nisl. Curabitur sit</p>
+  </div>
+  <div class="introduce__meetOurTeem meetOurTeem jsParalax" parallax>
+    <img src="./assets/images/our-teem-bg.jpg" class="jsParalax__bgImg" alt="">
+    <a ui-sref="company" class="meetOurTeem__link itemLinkAll itemLinkAll-light">Meet Our Team</a>
+  </div>
+</section>
+<section class="homePageBlog" ng-if="home.blogs.length > 0">
+  <ul class="homePageBlog__listBlog listBlog">
+    <li class="listBlog__blogItem blogItem" ng-repeat="(key, item) in home.blogs">
+      <a href="#/blog/article/{{item.id}}" class="blogItem__link">
+        <h4 class="blogItem__title">{{item.title}}</h4>
+        <p class="blogItem__dscr">{{item.description.slice(0, 300)}}</p>
+      </a>
+      <img class="blogItem__bgImg" ng-src="{{home.url}}{{item.img}}" alt="img for blog">
+    </li>
+  </ul>
+</section>

@@ -1,0 +1,89 @@
+<div class="darkTitle">
+  <p class="darkTitle__dscr">We are a design and development</p>
+  <h2 class="darkTitle__title">Team</h2>
+</div>
+<section class="teamBlock">
+  <div class="teamBlock__headPageDscr headPageDscr wrapCentering wrapCentering-lg-m">
+    <h2 class="headPageDscr__title">Our philosophy</h2>
+    <p class="headPageDscr__dscr">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean luctus bibendum
+      gravida. Aliquam nec ex libero. Morbi egestas magna sit amet tincidunt bibendum. Etiam et nunc mollis, condimentum
+      arcu sed, venenatis nisl. Curabitur sit amet tincidunt odio. Ut egestas feugiat augue. Sed quis metus finibus,
+      blandit urna in, laoreet nulla. Donec pulvinar venenatis mi eu ornare. Pellentesque ac turpis ut elit ornare
+      congue. Aliquam erat volutpat. Morbi ornare lacus ex, non finibus velit sollicitudin vitae. Suspendisse fermentum,
+      risus id iaculis imperdiet, orci turpis congue nisl, sed imperdiet elit elit sed ligula. Duis at auctor dolor.
+      Nullam faucibus ac diam ac porttitor. Duis libero libero, facilisis sed</p>
+  </div>
+  <ul class="teamBlock__list doMoreList doMoreList-comp wrapCentering wrapCentering-lg">
+    <li class="doMoreList__item doMoreListItem doMoreListItem-creative">
+      <span class="doMoreListItem__title">Creative</span>
+      <p class="doMoreListItem__dscr">The best developers can elevate a project from merely skillful to exquisite
+        artistry. Our team of specialists not only has a strong foundation in programming but also has the vision and
+        drive to create innovative.</p>
+    </li>
+    <li class="doMoreList__item doMoreListItem doMoreListItem-balance">
+      <span class="doMoreListItem__title">Balance</span>
+      <p class="doMoreListItem__dscr">The best developers can elevate a project from merely skillful to exquisite
+        artistry. Our team of specialists not only has a strong foundation in programming but also has the vision and
+        drive to create innovative.</p>
+    </li>
+    <li class="doMoreList__item doMoreListItem doMoreListItem-result">
+      <span class="doMoreListItem__title">Result</span>
+      <p class="doMoreListItem__dscr">The best developers can elevate a project from merely skillful to exquisite
+        artistry. Our team of specialists not only has a strong foundation in programming but also has the vision and
+        drive to create innovative.</p>
+    </li>
+  </ul>
+</section>
+<div class="amazingProd jsParalax" parallax>
+  <img src="./assets/images/company-bg.jpg" class="jsParalax__bgImg" alt="">
+  <div class="careerMore__careerFooter careerFooter careerFooter-bgNone">
+    <div class="careerFooter__contentBox contentBox contentBox-lg contentBox-lg-company">
+      <p class="careerFooter__title">We help build amazing digital products</p>
+      <p class="careerFooter__dscr">More than 50 world companies</p>
+    </div>
+  </div>
+</div>
+<section class="teamPeople">
+  <div class="teamPeople__teamCarousel teamCarousel wrapCentering wrapCentering-lg">
+    <div class="teamCarousel__carouselLeftArrow" ng-click="comp.slickConfig.method.slickPrev()"></div>
+    <slick settings="comp.slickConfig">
+      <div class="carouselList__carouselItem carouselItem" ng-repeat="employee in comp.employees">
+        <img ng-src="./assets/images/{{employee.img}}.jpg" alt="{{employee.img}}" class="carouselItem__img">
+        <div class="carouselItem__carouselDscrBox carouselDscrBox">
+          <div class="carouselDscrBox__holder">
+            <p class="carouselDscrBox__title">{{employee.name}}</p>
+            <p class="carouselDscrBox__positionDscr">{{employee.position}}</p>
+            <a ng-href="{{employee.link}}"
+               class="carouselDscrBox__carouselSocLink carouselDscrBox__carouselSocLink-twitter"></a>
+          </div>
+        </div>
+      </div>
+    </slick>
+    <div class="teamCarousel__carouselRightArrow" ng-click="comp.slickConfig.method.slickNext()"></div>
+  </div>
+  <ul class="teamPeople__teamNumbers teamNumbers">
+    <li class="teamNumbers__teamNumbItem teamNumbItem teamNumbItem-days">
+      <span class="teamNumbItem__number">6336</span>
+      <p class="teamNumbItem__dscr">Days Together</p>
+    </li>
+    <li class="teamNumbers__teamNumbItem teamNumbItem teamNumbItem-clients">
+      <span class="teamNumbItem__number">1005</span>
+      <p class="teamNumbItem__dscr">Happy Clients</p>
+    </li>
+    <li class="teamNumbers__teamNumbItem teamNumbItem teamNumbItem-code">
+      <span class="teamNumbItem__number">360K</span>
+      <p class="teamNumbItem__dscr">Code Lines</p>
+    </li>
+    <li class="teamNumbers__teamNumbItem teamNumbItem teamNumbItem-cup">
+      <span class="teamNumbItem__number">1760</span>
+      <p class="teamNumbItem__dscr">Cup's Of Cofee</p>
+    </li>
+  </ul>
+</section>
+<section class="photoCollage">
+  <ul class="photoCollage__collageList collageList">
+    <li class="collageList__collageItem collageItem" ng-repeat="photoName in comp.ourPhoto track by $index">
+      <img ng-src="./assets/images/{{photoName}}.jpg" alt="{{photoName}}" class="collageItem__img">
+    </li>
+  </ul>
+</section>

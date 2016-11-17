@@ -1,0 +1,40 @@
+<link rel="stylesheet" href="style/common_admin.css">
+
+<section class="adminStartBox">
+  <h1 class="adminStartBox__title text-center">Admin</h1>
+  <form class="form-horizontal" name="authForm" action="" method="post" novalidate >
+    <div class="form-group">
+      <label class="col-md-5 col-sm-4 control-label" for="user-email">Login</label>
+      <div class="col-md-2 col-sm-4">
+        <input class="form-control" id="user-email" type="text" placeholder="email"
+           name="login"
+           ng-minlength="4"
+           ng-maxlength="20"
+           ng-model="admin.email"
+           required>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-5 col-sm-4 control-label" for="user-password">Password</label>
+      <div class="col-md-2 col-sm-4">
+        <input class="form-control" id="user-password" type="password" placeholder="password"
+           name="password"
+           ng-minlength="4"
+           ng-maxlength="15"
+           ng-model="admin.password"
+           required>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-md-offset-5 col-md-2 col-sm-offset-4 col-sm-4">
+        <button class="btn btn-lg btn-default btn-block"
+           ng-disabled="authForm.$invalid"
+           ng-click="admin.logged($event, authForm)">Login</button>
+      </div>
+    </div>
+  </form>
+  <div class="adminStartBox__warningMsg warningMsg" ng-if="admin.invalid">
+    Incorrect data
+    <span class="warningMsg__icon glyphicon glyphicon-exclamation-sign"></span>
+  </div>
+</section>

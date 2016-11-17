@@ -1,0 +1,67 @@
+<div class="darkTitle">
+  <p class="darkTitle__dscr">We are looking for</p>
+  <h2 class="darkTitle__title">{{callback.vacancy.position}}</h2>
+</div>
+<section class="applyBox">
+  <div class="applyBox__lightTitle lightTitle lightTitle-smallPd wrapCentering wrapCentering-lg-m">
+    <p class="lightTitle__dscr">{{callback.vacancy.description}}</p>
+  </div>
+  <div class="applyBox__applyFormBox applyFormBox">
+    <form class="applyFormBox__applyForm" name="sendCv" novalidate>
+      <label class="applyFormBox__borderLabel borderLabel" for="sendCv_name">
+        <input id="sendCv_name" type="text" class="applyFormBox__input inputKind" placeholder="Name*"
+               name="name"
+               ng-minlength="3"
+               ng-maxlength="15"
+               ng-class="sendCv.name.$invalid && !sendCv.name.$pristine ? 'border' : ''"
+               ng-model="callback.name"
+               required>
+        <div ng-show="sendCv.name.$invalid && !sendCv.name.$pristine" class="borderIcon"></div>
+      </label>
+      <label class="applyFormBox__borderLabel borderLabel" for="sendCv_email">
+        <input id="sendCv_email" type="email" class="applyFormBox__input inputKind" placeholder="Email*"
+               name="email"
+               ng-minlength="6"
+               ng-maxlength="30"
+               ng-class="sendCv.email.$invalid && !sendCv.email.$pristine ? 'border' : ''"
+               ng-model="callback.email"
+               required>
+        <div ng-show="sendCv.email.$invalid && !sendCv.email.$pristine" class="borderIcon"></div>
+      </label>
+      <label class="applyFormBox__borderLabel borderLabel" for="sendCv_phone">
+        <input id="sendCv_phone" type="text" class="applyFormBox__input inputKind" placeholder="Phone*"
+               name="phone"
+               ng-minlength="10"
+               ng-maxlength="13"
+               ng-pattern="callback.numberRegExp"
+               ng-class="sendCv.phone.$invalid && !sendCv.phone.$pristine ? 'border' : ''"
+               ng-model="callback.phone"
+               required>
+        <div ng-show="sendCv.phone.$invalid && !sendCv.phone.$pristine" class="borderIcon"></div>
+      </label>
+      <div class="applyFormBox__fileformBox fileformBox">
+        <div class="fileformBox__label">{{callback.attachFileName}}</div>
+        <div class="fileformBox__btn"></div>
+        <input type="file" class="fileformBox__input"
+               name="cv"
+               ng-files file-area="callback.$file" file-area-name="callback.attachFileName"/>
+      </div>
+      <div class="applyFormBox__applyLink applyLink">
+        <button ng-disabled="sendCv.$invalid" class="applyFormBox__submit" type="submit"
+                ng-click="callback.sendForm($event, sendCv)">Send
+        </button>
+        <span ng-repeat="i in [1,2,3,4]" class="applyLink__line-{{i}}"></span>
+      </div>
+    </form>
+  </div>
+</section>
+
+<div class="sendingSuccess animate-if" ng-if="callback.success">
+  <div class="sendingSuccess__box">
+    <p class="sendingSuccess__text" ng-if="callback.success === 'Success'">
+      Thank you! </br>
+      We will contact you soon.
+    </p>
+    <p class="sendingSuccess__text" ng-if="callback.success === 'Error'">{{callback.success}}</p>
+  </div>
+</div>

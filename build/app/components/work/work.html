@@ -1,0 +1,19 @@
+<div class="darkTitle darkTitle-big">
+    <div class="darkTitle__bigBox">
+        <p class="darkTitle__dscr">We bring ideas</p>
+        <h2 class="darkTitle__title">To life</h2>
+    </div>
+</div>
+<section class="workListBox">
+    <ul class="workListBox__workList workList">
+        <li class="workList__workItem workItem" ng-repeat="(key, item) in work.projects">
+            <img ng-src="{{work.url}}{{item.imgTitle}}" alt="" class="workItem__img">
+            <a href="#/works/{{key}}" class="workItem__link"></a>
+            <div class="workItem__itemDscr">
+                <h3 class="workItem__title">{{item.title}}</h3>
+                <p class="workItem__dscr">{{item.subTitle}}</p>
+                <span class="workItem__linkCup itemLinkAll itemLinkAll-light">View case study</span>
+            </div>
+        </li>
+    </ul>
+</section>

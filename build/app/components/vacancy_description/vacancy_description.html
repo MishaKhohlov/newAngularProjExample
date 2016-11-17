@@ -1,0 +1,32 @@
+<div class="darkTitle">
+  <p class="darkTitle__dscr">We are looking for</p>
+  <h2 class="darkTitle__title">{{vcn.dataVacancy.position}}</h2>
+</div>
+<section class="careerMore">
+  <div class="careerMore__headPageDscr headPageDscr wrapCentering wrapCentering-lg-m">
+    <p class="headPageDscr__dscr">{{vcn.dataVacancy.description}}</p>
+  </div>
+  <ul class="careerMore__vacancyDscr vacancyDscr wrapCentering wrapCentering-lg">
+    <li class="vacancyDscr__vacancyItem vacancyItem" ng-repeat="listPoint in vcn.vacanciesList">
+      <div class="vacancyItem__careerItemHead careerItemHead careerItemHead-more">
+        <p class="careerItemHead__title">{{listPoint.title}}</p>
+      </div>
+      <ul class="vacancyItem__careerDscrList careerDscrList careerDscrList-more">
+        <li class="careerDscrList__item" ng-repeat="item in vcn.dataVacancy[listPoint.section] track by $index">{{item}}</li>
+      </ul>
+    </li>
+  </ul>
+  <div class="careerMore__careerLinks careerLinks careerLinks-more">
+    <a ng-href="#/call_back_form/{{vcn.vacancy}}" class="careerLinks__link applyLink">
+      Apply now
+      <span ng-repeat="i in [1,2,3,4]" class="applyLink__line-{{i}}"></span>
+    </a>
+  </div>
+  <p class="careerMore__mail">hr@knubisoft.com</p>
+  <div class="careerMore__careerFooter careerFooter careerFooter-more">
+    <div class="careerFooter__contentBox contentBox">
+      <p class="careerFooter__title">Join our creative team</p>
+      <p class="careerFooter__dscr">More than 50 world companies</p>
+    </div>
+  </div>
+</section>
